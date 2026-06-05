@@ -28,7 +28,6 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<Tab>("scripts");
   const [profileImageLoaded, setProfileImageLoaded] = useState(true);
 
-  // Updated to direct image URL
   const profilePicUrl = "https://i.imgur.com/Vuq9Ooy.jpeg";
 
   // Binary animation
@@ -121,7 +120,7 @@ export default function Home() {
           </div>
         ) : (
           <section className="bg-black/50 backdrop-blur-xl border border-green-600 rounded-2xl p-8 text-center shadow-[0_0_30px_rgba(0,255,0,0.25)]">
-            {/* Direct profile picture - no longer wrapped in <a> for display */}
+            {/* Profile Picture - Now directly visible */}
             <div className="mx-auto mb-5 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full border-2 border-green-500 bg-green-950 shadow-[0_0_25px_rgba(0,255,0,0.45)]">
               {profileImageLoaded ? (
                 <img
@@ -139,16 +138,6 @@ export default function Home() {
             <p className="mt-3 text-xl text-green-300">
               (ZscriptX) Made All the scripts
             </p>
-
-            {/* Optional: Keep a "View Full" link */}
-            <a
-              href={profilePicUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-block rounded-lg border border-green-700 px-4 py-2 text-sm text-green-300 transition hover:bg-green-900/40"
-            >
-              View Full Profile Pic
-            </a>
           </section>
         )}
       </main>
