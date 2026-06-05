@@ -28,7 +28,8 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<Tab>("scripts");
   const [profileImageLoaded, setProfileImageLoaded] = useState(true);
 
-  const profilePicUrl = "https://imgur.com/a/1fANzVl";
+  // Updated to direct image URL
+  const profilePicUrl = "https://i.imgur.com/Vuq9Ooy.jpeg";
 
   // Binary animation
   useEffect(() => {
@@ -89,20 +90,18 @@ export default function Home() {
                   {script.name}
                 </h1>
 
-                {script.discontinued ? (
+                {script.discontinued && (
                   <p className="text-red-500 font-bold text-center mb-4">
                     ⚠️ DISCONTINUED
                   </p>
-                ) : null}
+                )}
 
-                {/* Features */}
                 <div className="space-y-2 text-lg text-green-300 text-center">
                   {script.features.map((feature) => (
                     <p key={feature}>✔ {feature}</p>
                   ))}
                 </div>
 
-                {/* Copy Button */}
                 <div className="mt-6 flex justify-center">
                   <button
                     onClick={() => copyText(script.code)}
@@ -114,7 +113,6 @@ export default function Home() {
                   </button>
                 </div>
 
-                {/* Loadstring Preview */}
                 <div className="mt-4 bg-black/60 p-3 rounded-lg border border-green-700 text-green-300 text-sm overflow-x-auto">
                   {script.code}
                 </div>
@@ -123,16 +121,9 @@ export default function Home() {
           </div>
         ) : (
           <section className="bg-black/50 backdrop-blur-xl border border-green-600 rounded-2xl p-8 text-center shadow-[0_0_30px_rgba(0,255,0,0.25)]">
-            <a
-              href={profilePicUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mx-auto mb-5 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full border-2 border-green-500 bg-green-950 text-4xl font-black text-green-300 shadow-[0_0_25px_rgba(0,255,0,0.45)]"
-            >
+            {/* Direct profile picture - no longer wrapped in <a> for display */}
+            <div className="mx-auto mb-5 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full border-2 border-green-500 bg-green-950 shadow-[0_0_25px_rgba(0,255,0,0.45)]">
               {profileImageLoaded ? (
-                // The provided profile picture is an Imgur album URL, so keep a
-                // fallback avatar if the browser cannot render it directly.
-                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={profilePicUrl}
                   alt="ZscriptX profile"
@@ -140,20 +131,23 @@ export default function Home() {
                   className="h-full w-full object-cover"
                 />
               ) : (
-                <span>ZX</span>
+                <span className="text-4xl font-black text-green-300">ZX</span>
               )}
-            </a>
+            </div>
+
             <h1 className="text-3xl font-bold text-green-400">ZscriptX</h1>
             <p className="mt-3 text-xl text-green-300">
               (ZscriptX) Made All the scripts
             </p>
+
+            {/* Optional: Keep a "View Full" link */}
             <a
               href={profilePicUrl}
               target="_blank"
               rel="noreferrer"
               className="mt-4 inline-block rounded-lg border border-green-700 px-4 py-2 text-sm text-green-300 transition hover:bg-green-900/40"
             >
-              View profile pic
+              View Full Profile Pic
             </a>
           </section>
         )}
