@@ -28,7 +28,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<Tab>("scripts");
   const [profileImageLoaded, setProfileImageLoaded] = useState(true);
 
-  const profilePicUrl = "https://i.imgur.com/Vuq9Ooy.jpeg";
+  const profilePicUrl = "https://i.imgur.com/a/Qbd0aZR.jpeg";
 
   // Binary animation
   useEffect(() => {
