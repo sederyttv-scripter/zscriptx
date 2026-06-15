@@ -31,7 +31,7 @@ const creators = [
   },
   {
     name: "mrrobotmaster",
-    description: "helped zscriptX to create highlight npcs",
+    description: "helped zscriptX to create enfosi script",
     profilePicUrl: "https://cdn.discordapp.com/attachments/1254775095994617926/1516082288679719092/d43d3b34a0836fc847ddbd9da8ecd886.png?ex=6a315929&is=6a3007a9&hm=06931cf333506727d30330ccb03e0d34f7765dd5842e4c66496f4164b26cec51&",
     initials: "MR",
   },
