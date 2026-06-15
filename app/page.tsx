@@ -149,17 +149,10 @@ export default function Home() {
                   key={creator.name}
                   className="bg-black/50 backdrop-blur-xl border border-green-600 rounded-2xl p-8 text-center shadow-[0_0_30px_rgba(0,255,0,0.25)]"
                 >
-                  <a
-                    href={creator.profilePicUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mx-auto mb-5 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full border-2 border-green-500 bg-green-950 text-4xl font-black text-green-300 shadow-[0_0_25px_rgba(0,255,0,0.45)]"
-                  >
+                  <div className="mx-auto mb-5 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full border-2 border-green-500 bg-green-950 text-4xl font-black text-green-300 shadow-[0_0_25px_rgba(0,255,0,0.45)]">
                     {profileImageFailed ? (
                       <span>{creator.initials}</span>
                     ) : (
-                      // The provided profile pictures are Imgur album URLs, so keep
-                      // fallback avatars if the browser cannot render them directly.
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={creator.profilePicUrl}
@@ -170,21 +163,14 @@ export default function Home() {
                         className="h-full w-full object-cover"
                       />
                     )}
-                  </a>
+                  </div>
+
                   <h1 className="text-3xl font-bold text-green-400">
                     {creator.name}
                   </h1>
                   <p className="mt-3 text-xl text-green-300">
                     {creator.description}
                   </p>
-                  <a
-                    href={creator.profilePicUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-4 inline-block rounded-lg border border-green-700 px-4 py-2 text-sm text-green-300 transition hover:bg-green-900/40"
-                  >
-                    View profile pic
-                  </a>
                 </article>
               );
             })}
