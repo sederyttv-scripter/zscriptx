@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-type Tab = "scripts" | "owners";
+type Tab = "scripts" | "creators";
 
 const scripts = [
   {
@@ -22,13 +22,28 @@ const scripts = [
   },
 ];
 
+const creators = [
+  {
+    name: "ZscriptX",
+    description: "(ZscriptX) Made All the scripts",
+    profilePicUrl: "https://j.imgur.com/a/KeG6Ggj.jpeg",
+    initials: "ZX",
+  },
+  {
+    name: "mrrobotmaster",
+    description: "helped zscriptX to create highlight npcs",
+    profilePicUrl: "https://i.imgur.com/a/jgglVHa.jpeg",
+    initials: "MR",
+  },
+];
+
 export default function Home() {
   const [binary, setBinary] = useState("");
   const [copied, setCopied] = useState("");
   const [activeTab, setActiveTab] = useState<Tab>("scripts");
-  const [profileImageLoaded, setProfileImageLoaded] = useState(true);
-
-  const profilePicUrl = "https://imgur.com/a/1fANzVl";
+  const [failedProfileImages, setFailedProfileImages] = useState<Set<string>>(
+    new Set(),
+  );
 
   // Binary animation
   useEffect(() => {
@@ -45,6 +60,10 @@ export default function Home() {
     navigator.clipboard.writeText(text);
     setCopied(text);
     setTimeout(() => setCopied(""), 1500);
+  };
+
+  const markProfileImageFailed = (profilePicUrl: string) => {
+    setFailedProfileImages((current) => new Set(current).add(profilePicUrl));
   };
 
   return (
@@ -67,14 +86,14 @@ export default function Home() {
             Scripts
           </button>
           <button
-            onClick={() => setActiveTab("owners")}
+            onClick={() => setActiveTab("creators")}
             className={`rounded-xl px-4 py-3 text-lg font-bold transition ${
-              activeTab === "owners"
+              activeTab === "creators"
                 ? "bg-green-500 text-black shadow-[0_0_18px_rgba(0,255,0,0.55)]"
                 : "text-green-300 hover:bg-green-900/40"
             }`}
           >
-            Owners
+            Creators
           </button>
         </nav>
 
@@ -122,39 +141,56 @@ export default function Home() {
             ))}
           </div>
         ) : (
-          <section className="bg-black/50 backdrop-blur-xl border border-green-600 rounded-2xl p-8 text-center shadow-[0_0_30px_rgba(0,255,0,0.25)]">
-            <a
-              href={profilePicUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mx-auto mb-5 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full border-2 border-green-500 bg-green-950 text-4xl font-black text-green-300 shadow-[0_0_25px_rgba(0,255,0,0.45)]"
-            >
-              {profileImageLoaded ? (
-                // The provided profile picture is an Imgur album URL, so keep a
-                // fallback avatar if the browser cannot render it directly.
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={profilePicUrl}
-                  alt="ZscriptX profile"
-                  onError={() => setProfileImageLoaded(false)}
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                <span>ZX</span>
-              )}
-            </a>
-            <h1 className="text-3xl font-bold text-green-400">ZscriptX</h1>
-            <p className="mt-3 text-xl text-green-300">
-              (ZscriptX) Made All the scripts
-            </p>
-            <a
-              href={profilePicUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-block rounded-lg border border-green-700 px-4 py-2 text-sm text-green-300 transition hover:bg-green-900/40"
-            >
-              View profile pic
-            </a>
+          <section className="grid gap-6 sm:grid-cols-2">
+            {creators.map((creator) => {
+              const profileImageFailed = failedProfileImages.has(
+                creator.profilePicUrl,
+              );
+
+              return (
+                <article
+                  key={creator.name}
+                  className="bg-black/50 backdrop-blur-xl border border-green-600 rounded-2xl p-8 text-center shadow-[0_0_30px_rgba(0,255,0,0.25)]"
+                >
+                  <a
+                    href={creator.profilePicUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mx-auto mb-5 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full border-2 border-green-500 bg-green-950 text-4xl font-black text-green-300 shadow-[0_0_25px_rgba(0,255,0,0.45)]"
+                  >
+                    {profileImageFailed ? (
+                      <span>{creator.initials}</span>
+                    ) : (
+                      // The provided profile pictures are Imgur album URLs, so keep
+                      // fallback avatars if the browser cannot render them directly.
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={creator.profilePicUrl}
+                        alt={`${creator.name} profile`}
+                        onError={() =>
+                          markProfileImageFailed(creator.profilePicUrl)
+                        }
+                        className="h-full w-full object-cover"
+                      />
+                    )}
+                  </a>
+                  <h1 className="text-3xl font-bold text-green-400">
+                    {creator.name}
+                  </h1>
+                  <p className="mt-3 text-xl text-green-300">
+                    {creator.description}
+                  </p>
+                  <a
+                    href={creator.profilePicUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-4 inline-block rounded-lg border border-green-700 px-4 py-2 text-sm text-green-300 transition hover:bg-green-900/40"
+                  >
+                    View profile pic
+                  </a>
+                </article>
+              );
+            })}
           </section>
         )}
       </main>
