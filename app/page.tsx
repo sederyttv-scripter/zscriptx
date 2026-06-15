@@ -27,7 +27,7 @@ const creators = [
     name: "ZscriptX",
     description: "(ZscriptX) Made All the scripts",
     profilePicUrl: "https://j.imgur.com/a/KeG6Ggj.jpeg",
-    initials: "ZX",
+    initials: "Zs",
   },
   {
     name: "mrrobotmaster",
@@ -108,20 +108,18 @@ export default function Home() {
                   {script.name}
                 </h1>
 
-                {script.discontinued ? (
+                {script.discontinued && (
                   <p className="text-red-500 font-bold text-center mb-4">
                     ⚠️ DISCONTINUED
                   </p>
-                ) : null}
+                )}
 
-                {/* Features */}
                 <div className="space-y-2 text-lg text-green-300 text-center">
                   {script.features.map((feature) => (
                     <p key={feature}>✔ {feature}</p>
                   ))}
                 </div>
 
-                {/* Copy Button */}
                 <div className="mt-6 flex justify-center">
                   <button
                     onClick={() => copyText(script.code)}
@@ -133,7 +131,6 @@ export default function Home() {
                   </button>
                 </div>
 
-                {/* Loadstring Preview */}
                 <div className="mt-4 bg-black/60 p-3 rounded-lg border border-green-700 text-green-300 text-sm overflow-x-auto">
                   {script.code}
                 </div>
