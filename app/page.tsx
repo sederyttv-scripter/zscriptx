@@ -26,13 +26,13 @@ const creators = [
   {
     name: "ZscriptX",
     description: "(ZscriptX) Made All the scripts",
-    profilePicUrl: "https://j.imgur.com/a/KeG6Ggj.jpeg",
+    profilePicUrl: "https://cdn.discordapp.com/attachments/1254775095994617926/1516082509018828821/1781532607206.jpg?ex=6a31595d&is=6a3007dd&hm=df33da6b591742c34f0e7295eed1588f28ce29022a9c1e512e4186d6185e0165&",
     initials: "Zs",
   },
   {
     name: "mrrobotmaster",
     description: "helped zscriptX to create highlight npcs",
-    profilePicUrl: "https://i.imgur.com/a/jgglVHa.jpeg",
+    profilePicUrl: "https://cdn.discordapp.com/attachments/1254775095994617926/1516082288679719092/d43d3b34a0836fc847ddbd9da8ecd886.png?ex=6a315929&is=6a3007a9&hm=06931cf333506727d30330ccb03e0d34f7765dd5842e4c66496f4164b26cec51&",
     initials: "MR",
   },
 ];
